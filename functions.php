@@ -7,6 +7,21 @@
  * @package Generation_0.1
  */
 
+ function generation_enqueue_scripts() {
+	wp_register_style('generation-general', get_template_directory_uri().'/assets/css/general.css', array(), '1.0', 'all');
+
+	wp_register_script('generation-script', get_template_directory_uri().'/assets/js/script.js', array('jquery'), '1.0', true);
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+	// wp_enqueue_style('generation-general');
+	// wp_enqueue_script('generation-script');
+
+ }
+ add_action('wp_enqueue_scripts', 'generation_enqueue_scripts');
+
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
@@ -134,20 +149,6 @@ function generation_0_1_widgets_init() {
 }
 add_action( 'widgets_init', 'generation_0_1_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function generation_0_1_scripts() {
-	wp_enqueue_style( 'generation-0-1-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'generation-0-1-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'generation-0-1-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'generation_0_1_scripts' );
 
 /**
  * Implement the Custom Header feature.
