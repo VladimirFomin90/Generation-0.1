@@ -29,5 +29,19 @@
 	// wp_enqueue_script('generation-script');
 ?>
 
+<?php 
+	wp_nav_menu(
+		array(
+			'theme_location' => 'header_nav',
+			'menu_class' => 'myclass',
+			'container' => 'div'
+		)
+	);
+
+	get_search_form();
+
+
+?>
+
 Test 1
 

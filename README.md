@@ -1,1 +1,1 @@
-My first WordpPess theme
+My first WordPress theme
